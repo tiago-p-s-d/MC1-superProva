@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <limits>
-#include <cstdlib> // <--- INCLUIR PARA USAR system()
-#include "library/MC1_tiago.h"
+#include <limits> // Necessário para std::cin.ignore
+#include "library/MC1_tiago.h" // Inclui sua biblioteca com as declarações
 
-// Função atualizada para pausar e limpar o terminal
 void pausar_e_limpar() {
     std::cout << "\nPressione Enter para continuar...";
     // cin.get() pode não funcionar como esperado se o buffer não for limpo primeiro
@@ -41,7 +39,6 @@ int main() {
             std::cout << "Entrada invalida. Por favor, digite um numero." << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            pausar_e_limpar();
             continue;
         }
 
@@ -49,7 +46,6 @@ int main() {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         
         switch (opcao) {
-            // ... (todos os seus cases de 1 a 7 continuam aqui, sem alteração) ...
             case 1: {
                 int num;
                 std::cout << "Digite um numero inteiro: ";
@@ -113,7 +109,7 @@ int main() {
                 std::cin >> modo;
                 std::cout << "Digite a mensagem: ";
                 std::string mensagem;
-                //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // não precisa mais aqui
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline(std::cin, mensagem);
                 std::string resultado = RSA_BRUH(mensagem, p, q, modo);
                 std::cout << "\nResultado Final: " << resultado << std::endl;
@@ -128,7 +124,6 @@ int main() {
                 break;
             }
         }
-        // A função é chamada aqui, no final de cada iteração do loop
         pausar_e_limpar();
     }
     return 0;
